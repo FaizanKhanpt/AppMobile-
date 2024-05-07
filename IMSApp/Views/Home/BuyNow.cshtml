@@ -1,0 +1,26 @@
+﻿@model IEnumerable<IMSApp.Models.Product>
+
+@{
+    ViewData["Title"] = "BuyNow";
+}
+
+<h1>BuyNow</h1>
+
+<div class="brand-bg">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                    <div class="brand_box">
+                        <img src="@Url.Content(item.imgURL)" alt="Product Image" style="max-width: 200px; max-height: 400px;" />
+                        <h4><strong>@item.Name</strong></h4>
+                        <h5><strong>@item.Brand</strong></h5>
+                        <h4><strong class="red">@item.Price</strong></h4>
+                        <a href="@Url.Action("PlaceOrderDetails", "Home", new { id = item.ProductId })" class="btn btn-success">Order Now</a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

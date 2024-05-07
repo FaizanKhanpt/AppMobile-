@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IMSApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<br />
+
+<h1 style="color:red;">List of Items</h1>
+<hr />
+
+
+<p>
+    <a class="btn btn-outline-success" asp-action="Create" class="">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imgURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockQuantity)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                    <img src="@Url.Content(item.imgURL)" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockQuantity)
+            </td>
+            <td>
+                    <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
